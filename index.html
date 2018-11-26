@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Kill Team Generator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+
+    </style>
+    
+
+    
+    </head>
+    
+    <body>
+       
+        <div id="div1">
+        <p id ="PageHeader"> Kill Team Shooting Sim </p>
+        </div>
+        
+        <div id="div2">
+
+        <input type="text" id="WeaponAttacks" value="# of attacks for the weapon">
+        <input type="text" id="WeaponSkill" value="shooters weapon skill">
+        <!-- <button onclick="HitRoll()"> Shoot! </button> -->
+        <button id="shootbtn"> Shoot! </button>
+        
+        <p id="WSOutput"></p>
+        <p id="HitRollOutput"></p>
+        <p id="ShootResultOutput"></p>
+        </div>
+        
+        <div id="div3">
+        <input type="text" id="WeaponStrength" value="shooters weapon strength">
+        <input type="text" id="TargetToughness" value="targets toughness">
+        <button id="woundbtn"> Wound! </button>
+            
+        <p id="WoundOutput"></p>
+        <p id="WeaponStrengthandTargetToughnessButton"></p>
+        <p id="WoundRollResult"></p>
+        <p id="wstrength"></p>
+        <p id="ttoughness"></p>
+        <p id="wsttdifference"></p>
+        <p id="WoundResultOutput"></p>
+             
+        </div>
+        
+        <div id="div4">
+        <input type="text" id="SaveField" value="targets save stat">
+        <input type="text" id="APField" value="weapons AP modifier">
+        <button id="savebtn"> Save! </button>
+        
+        <p id="SaveResultOutput"></p>
+            
+        </div>
+        
+        <div id="div5"> 
+        <input type="text" id="WeaponDamageField" value="weapon damage stat">
+        <input type="text" id="TargetsWounds" value="targets wound value">
+        <input type="text" id="TargetsFleshWounds" value="targets flesh wound total">
+        <button id="injbtn"> Injure! </button>
+        
+        <p id="DamageResultOutput"></p>
+        <p id="WoundsDamageResultOutput"></p>
+        <p id="InjResultOutput"></p>
+        
+       
+        
+        
+        </div>
+        
+        
+        
+        
+        
+        
+        <script>
+        
+        document.getElementById("shootbtn").addEventListener("click", HitRoll);
+        document.getElementById("woundbtn").addEventListener("click", WoundRoll);
+        document.getElementById("savebtn").addEventListener("click", SaveRoll);
+        document.getElementById("injbtn").addEventListener("click", InjRoll);
+        
+        
+    
+        function dieroll(side) {
+            min = 1;
+            dierollresult = Math.floor(Math.random() * (side) ) + min;
+            //document.getElementById("dierolloutput").innerHTML = dierollresult;
+            return dierollresult;
+            }  
+        function clearscreen() {
+            //document.body.innerHTML = "";
+            //document.getElementById("div1").innerHTML = "";
+            //document.getElementById("div2").innerHTML = "";
+            //document.getElementById("div3").innerHTML = "";
+            //var header = "Kill Team shooting Sim";
+            //document.getElementById("WoundOutput").innerHTML= header;
+            
+        }   
+        
+        function InjRoll() {
+            var WeaponDamageValue = document.getElementById("WeaponDamageField").value;
+            var TargetsWoundsValue = document.getElementById("TargetsWounds").value;
+            var TargetsFleshWoundsValue = document.getElementById("TargetsFleshWounds").value;
+            var injdieroll = dieroll(6);
+            var InjRoll = injdieroll + Number(TargetsFleshWoundsValue);
+            var TargetsWoundsValueResult = Number(TargetsWoundsValue) - Number(WeaponDamageValue);
+            
+            document.getElementById("DamageResultOutput").innerHTML = "you took " + WeaponDamageValue + " damage!";
+            document.getElementById("WoundsDamageResultOutput").innerHTML = "you took " + TargetsWoundsValueResult + " wounds";
+            
+            if (TargetsWoundsValueResult <= 0) {
+                if (injdieroll >= 4) {
+                    document.getElementById("InjResultOutput").innerHTML = "your out of action soldier - modded inj roll: " + InjRoll;
+                }   
+                else    {
+                    document.getElementById("InjResultOutput").innerHTML = "you live, take a flesh wound - modded inj roll: " + InjRoll;
+                }
+            }
+        }
+        
+        
+        function SaveRoll() {
+            var ModelSaveValue = document.getElementById("SaveField").value;
+            var WeaponAPValue = document.getElementById("APField").value;
+            var savedieroll = dieroll(6);
+            var SaveRoll = savedieroll + Number(WeaponAPValue);
+            
+            if (SaveRoll >= ModelSaveValue && savedieroll > 1 ) {
+                document.getElementById("SaveResultOutput").innerHTML = "you saved! modded roll was " + SaveRoll;
+            }
+            else {
+                document.getElementById("SaveResultOutput").innerHTML = "you didnt save, modded roll was " + SaveRoll;
+            }
+            
+            
+        }
+
+        function WoundRoll() {
+
+            //var WSinp = document.createElement("input");
+            //WSinp.setAttribute("type", "text");
+            //WSinp.setAttribute("value", "enter weapon strength");
+            //document.getElementById("WeaponStrength").appendChild(WSinp);
+
+            //var WSValue = document.getElementById("WeaponStrength").value;
+            
+            //var TTinp = document.createElement("input");
+            //TTinp.setAttribute("type", "text");
+            //TTinp.setAttribute("value", "enter target toughness");
+            //document.getElementById("TargetToughness").appendChild(TTinp);
+
+            
+            //var WSTTbut = document.createElement("BUTTON");
+            //var textnode = document.createTextNode("submit weapon strength and target toughness");
+            //WSTTbut.appendChild(textnode);
+            //document.getElementById("WeaponStrengthandTargetToughnessButton").appendChild(WSTTbut);
+            //document.getElementById("WeaponStrengthButton").appendChild(bx);
+            
+            //document.getElementById("wstrength").innerHTML = WSValue;
+            //document.getElementById("ttoughness").innerHTML = TTValue;
+            //document.getElementById("WeaponStrengthandTargetToughnessButton").addEventListener(
+            //        "click", WoundRollOutput); 
+            //document.getElementById("WoundOutput").innerHTML = "getting wound data now..."; 
+            var WepSValue = document.getElementById("WeaponStrength").value;
+            var TTValue = document.getElementById("TargetToughness").value;
+            //document.getElementById("wstrength").innerHTML = WepSValue;
+            //document.getElementById("ttoughness").innerHTML = TTValue;
+            
+            
+            var woundrollresult = dieroll(6);
+            document.getElementById("WoundRollResult").innerHTML = "were doing wound calcs now, die roll is " + woundrollresult;
+            //document.getElementById("WoundRollResult").innerHTML = woundrollresult;
+            
+            var WSTTdifference = WepSValue - TTValue;
+            var WSTTdivision = WepSValue / TTValue;
+            var WepSValueDOUBLE = 0;
+            var TTValueDOUBLE = 0;
+            
+            if (WSTTdivision >=2) {
+                document.getElementById("WoundOutput").innerHTML = "WepStr is 2x Tough";
+                WepSValueDOUBLE = 1;
+                
+            }
+            if (WSTTdivision <=.5) {
+                document.getElementById("WoundOutput").innerHTML = "Tough is 2x Wepstr"; 
+                TTValueDOUBLE = 1;
+            }
+            //var WSTTdifferenceTWICEFLAG = WepSValue - TTValue;
+            
+            
+            
+            
+            
+            
+            //document.getElementById("wsttdifference").innerHTML = "need to roll over " + WSTTdifference + " to wound";
+         
+            if (WSTTdifference === 0) {
+                var WoundRollRequired = 4;
+                document.getElementById("wsttdifference").innerHTML = "need to roll " + WoundRollRequired + " or over to wound";
+                if (woundrollresult >= 4) {
+                    document.getElementById("WoundResultOutput").innerHTML = "you caused a wound!";
+                    
+                }
+                else {
+                    document.getElementById("WoundResultOutput").innerHTML = "you didn't cause a wound!";
+                }
+
+            }      
+            
+            if (WSTTdifference >= 1 && WepSValueDOUBLE === 0 ) {
+                var WoundRollRequired = 3;
+                document.getElementById("wsttdifference").innerHTML = "need to roll " + WoundRollRequired + " or over to wound";
+                if (woundrollresult >= 3) {
+                    document.getElementById("WoundResultOutput").innerHTML = "you caused a wound!";
+                    
+                }
+                else {
+                    document.getElementById("WoundResultOutput").innerHTML = "you didn't cause a wound!";
+                }
+            }
+            
+            if (WSTTdifference >= 1 && WepSValueDOUBLE === 1) {
+                var WoundRollRequired = 2;
+                document.getElementById("wsttdifference").innerHTML = "need to roll " + WoundRollRequired + " or over to wound";
+                if (woundrollresult >= 2) {
+                    document.getElementById("WoundResultOutput").innerHTML = "you caused a wound!";
+                    
+                }
+                else {
+                    document.getElementById("WoundResultOutput").innerHTML = "you didn't cause a wound!";
+                }
+            }     
+            
+            if (WSTTdifference <= -1 && TTValueDOUBLE === 0) {
+                var WoundRollRequired = 5;
+                document.getElementById("wsttdifference").innerHTML = "need to roll " + WoundRollRequired + " or over to wound";
+                if (woundrollresult >= 5) {
+                    document.getElementById("WoundResultOutput").innerHTML = "you caused a wound!";
+                    
+                }
+                else {
+                    document.getElementById("WoundResultOutput").innerHTML = "you didn't cause a wound!";
+                }
+            }     
+            
+            if (WSTTdifference <= -1 && TTValueDOUBLE === 1) {
+                var WoundRollRequired = 6;
+                document.getElementById("wsttdifference").innerHTML = "need to roll " + WoundRollRequired + " or over to wound";
+                if (woundrollresult >= 6) {
+                    document.getElementById("WoundResultOutput").innerHTML = "you caused a wound!";
+                    
+                }
+                else {
+                    document.getElementById("WoundResultOutput").innerHTML = "you didn't cause a wound!";
+                }
+            }     
+        
+        
+        
+        }
+
+        function HitRoll() {
+            
+            var WSValue = document.getElementById("WeaponSkill").value;
+            var WAttacksValue = document.getElementById("WeaponAttacks").value;
+            //document.write("got here");
+            var i;
+            for (i = 0; i < Number(WAttacksValue); i++)
+            {
+            var RollValue = dieroll(6);
+            
+            if (RollValue >= WSValue) {
+                    if (RollValue === 6){
+                        var ShootResult = "YOU HIT! with a CRITICAL " + RollValue;
+                        //document.getElementById("ShootResultOutput").innerHTML = ShootResult;
+                              
+                    }
+                    
+                    else {
+                    var ShootResult = "YOU HIT! with a " + RollValue;
+                    //document.getElementById("ShootResultOutput").innerHTML = ShootResult;
+                    
+                    }
+                    //document.getElementById("ShootResultOutput").appendChild(ShootResult);
+                    //document.getElementById("ShootResultOutput").innerHTML = ShootResult; 
+
+                }    
+            else {
+                    if (RollValue === 1){
+                        var ShootResult = "YOU MISSED! with a CRITICAL " + RollValue;
+                        //document.getElementById("ShootResultOutput").innerHTML = ShootResult;
+                    }
+                    
+                    else {
+                    var ShootResult = "YOU MISSED! with a " + RollValue;
+                    //document.getElementById("ShootResultOutput").innerHTML = ShootResult;
+                    }
+                    //document.getElementById("ShootResultOutput").innerHTML = ShootResult;
+                }
+            var node = document.createElement("p");
+            var textnode = document.createTextNode(ShootResult);
+            node.appendChild(textnode); 
+            document.getElementById("ShootResultOutput").appendChild(node);
+            //document.getElementById("ShootResultOutput").innerHTML = ShootResult; 
+            
+            }
+        }
+            
+            
+           
+        
+
+       
+       
+        
+       
+       
+       
+       
+        </script>
+        
+        
+    </body>
+</html>
