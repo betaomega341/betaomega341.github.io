@@ -1,1 +1,1155 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>40k sector GEN</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        
 
+ 
+ <!--
+ <p>Please input a number between 1 and 2:</p>
+ <input id="numb">
+ <button type="button" onclick="myFunction()">Submit</button>
+ <p id="demo"></p>
+-->
+    
+
+
+<!--
+<h1>Enter a number for how many die sides</h1>
+<input id ="diesideinput">
+<button onclick="dieroll()">roll the die</button>
+<p id ="dierolloutput"></p>
+-->
+
+<h1>Push a button to create a sector</h1>
+
+<button onclick="CreateSectorWS()">Create Sector with Warp Storm rules</button>
+
+  
+<p id ="firstoveralloutput"></p>
+<p id ="secondoveralloutput"></p>
+<!--
+<p id ="dierolloutput"></p>
+<p id ="sexoutresult"></p>
+<p id ="raceoutresult"></p>
+<p id ="baseclassoutresult"></p>
+<p id ="kitclassoutresult"></p>
+<p id ="secondoveralloutput"></p>
+<button onclick="CreateSectorM40K()">Create Sector with Mega 40K rules</button>
+-->
+
+
+<script>
+/*var dice20 = {
+  sides: 20,
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber;
+  }
+};
+
+var dice2 = {
+  sides: 2,
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber;
+  }
+};*/
+function Sector(SubSectorTotal) {
+    this.SubSectorCount = SubSectorTotal;
+    this.returnSubSectorCount = function() {return this.SubSectorCount;};
+   
+    function SubSector(SubSectorTotal) {
+        this.SubSectorID = SubSectorTotal;
+        this.WarpChanels = function(){};
+        this.PlanetClass = function(){};
+        this.returnSubSectorCount = function() {return this.SubSectorCount;};
+    };
+
+    this.SubSectorGeneration = function() {
+            for (x=1;x<SubSectorTotal;x++) {
+                var SubSector = this.SubSector(x);
+                document.write(SubSector);
+                return SubSector;
+                
+            };
+        };
+
+
+
+};
+
+
+
+
+
+function dieroll(side) {
+    var min = 1;
+    var dierollresult = Math.floor(Math.random() * (side) ) + min;
+    //document.getElementById("dierolloutput").innerHTML = dierollresult;
+    return dierollresult;
+};
+
+function sectorFactionGen(predomracegen) {
+    switch (predomracegen) {
+        case 2: 
+            return "Independent Human";
+        case 3: 
+            return "Imperial Human";
+        case 4:
+            return "Imperial Human";
+        case 5: 
+            return "Imperial Human";
+        case 6:
+            return "Ork";
+    }
+
+};
+
+function createsectorWS(subSectorAmount) {
+    
+    var ssa = subSectorAmount;
+    var NewSector = new Sector(ssa);
+    return NewSector;
+};
+
+function createsubsectorWarpChanWS() {
+    
+    var warpchanneltotal = dieroll(6);
+    return warpchanneltotal; 
+     
+};
+
+function subSectorChannelsWS() {
+        //ssc = Sector.SubSectorCount;
+        var SubSectorArray = [];
+        //document.write(ssc);
+        //var SubSectors = {};
+        
+        while (ssc > 0 )  {
+           //document.write(ssc);
+            var systemcreate = SubSectorArray[ssc];
+            //SS.SubSectorNumber = ssc;
+            //document.write(Subsector.SubSectorNumber());
+            //Subsector.SubSectorNumber[ssc] = new Subsector();
+            //SS[ssc].WarpChannelCount = dieroll(6);
+            //document.write(ssc);
+            ssc--;  
+            
+        }
+        //document.write('here');
+        return SS;
+};
+
+function classroll() {
+    
+    switch (Character.Race) {
+                case "Human":
+                    //var ClassResult = dieroll(12);
+                    switch (dieroll(11)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Mage";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 5:
+                            return Character.Class.BaseClass = "Ranger";            
+                        break;
+                        case 6:
+                            return Character.Class.BaseClass = "Paladin";            
+                        break;
+                        case 7:
+                            return Character.Class.BaseClass = "Druid";            
+                        break;
+                        case 8:
+                            return Character.Class.BaseClass = "Shaman";            
+                        break;
+                        case 9:
+                            return Character.Class.BaseClass = "Sorcerer";            
+                        break;
+                        case 10:
+                            return Character.Class.BaseClass = "Bard";            
+                        break;
+                        case 11:
+                            return Character.Class.BaseClass = "Monk";            
+                        break;                        
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    } 
+                
+                case "Elf":
+                    //var ClassResult = dieroll(7);
+                    switch (dieroll(10)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Mage";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 5:
+                            return Character.Class.BaseClass = "Ranger";            
+                        break;                        
+                        case 6:
+                            return Character.Class.BaseClass = "Sorcerer";            
+                        break;
+                        case 7:
+                            return Character.Class.BaseClass = "Fighter/Mage";            
+                        break;
+                        case 8:
+                            return Character.Class.BaseClass = "Fighter/Thief";            
+                        break;
+                        case 9:
+                            return Character.Class.BaseClass = "Fighter/Mage/Thief";            
+                        break;
+                        case 10:
+                            return Character.Class.BaseClass = "Mage/Thief";            
+                        break;
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    } 
+                case "HalfElf":
+                    //var ClassResult = dieroll(10);
+                    switch (dieroll(18)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Mage";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 5:
+                            return Character.Class.BaseClass = "Ranger";            
+                        break;                      
+                        case 6:
+                            return Character.Class.BaseClass = "Druid";            
+                        break;
+                        case 7:
+                            return Character.Class.BaseClass = "Shaman";            
+                        break;
+                        case 8:
+                            return Character.Class.BaseClass = "Sorcerer";            
+                        break;
+                        case 9:
+                            return Character.Class.BaseClass = "Bard";            
+                        break;                 
+                        case 10:
+                            return Character.Class.BaseClass = "Fighter/Mage";
+                        break;
+                        case 11:
+                            return Character.Class.BaseClass = "Fighter/Cleric";
+                        break;
+                        case 12:
+                            return Character.Class.BaseClass = "Fighter/Thief";
+                        break;
+                        case 13:
+                            return Character.Class.BaseClass = "Fighter/Mage/Thief";
+                        break;
+                        case 14:
+                            return Character.Class.BaseClass = "Mage/Thief";
+                        break;
+                        case 15:
+                            return Character.Class.BaseClass = "Cleric/Mage";
+                        break;
+                        case 16:
+                            return Character.Class.BaseClass = "Fighter/Druid";
+                        break;
+                        case 17:
+                            return Character.Class.BaseClass = "Fighter/Mage/Cleric";
+                        break;
+                        case 18:
+                            return Character.Class.BaseClass = "Cleric/Ranger";
+                        break;
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    }
+                case "Dwarf":
+                    //var ClassResult = dieroll(4);
+                    switch (dieroll(5)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Fighter/Cleric";            
+                        break;
+                        case 5:
+                            return Character.Class.BaseClass = "Fighter/Thief";            
+                        break;   
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    }    
+                case "Gnome":
+                    //var ClassResult = dieroll(5);
+                    switch (dieroll(10)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Illusionist";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;        
+                        case 5:
+                            return Character.Class.BaseClass = "Fighter/Illusionist";            
+                        break; 
+                        case 6:
+                            return Character.Class.BaseClass = "Fighter/Cleric";            
+                        break; 
+                        case 7:
+                            return Character.Class.BaseClass = "Fighter/Thief";            
+                        break;
+                        case 8:
+                            return Character.Class.BaseClass = "Illusionist/Thief";            
+                        break; 
+                        case 9:
+                            return Character.Class.BaseClass = "Cleric/Illusionist";            
+                        break;
+                        case 10:
+                            return Character.Class.BaseClass = "Cleric/Thief";            
+                        break;
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    } 
+                case "Halfling":
+                    //var ClassResult = dieroll(4);
+                    switch (dieroll(4)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Fighter/Thief";            
+                        break;
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    }   
+                case "HalfOrc":
+                    //var ClassResult = dieroll(4);
+                    switch (dieroll(7)) {
+                        case 1:
+                            return Character.Class.BaseClass = "Fighter";
+                        break;
+                        case 2:
+                            return Character.Class.BaseClass = "Cleric";            
+                        break;
+                        case 3:
+                            return Character.Class.BaseClass = "Thief";            
+                        break;
+                        case 4:
+                            return Character.Class.BaseClass = "Shaman";            
+                        break;
+                        case 5:
+                            return Character.Class.BaseClass = "Fighter/Cleric";            
+                        break;
+                        case 6:
+                            return Character.Class.BaseClass = "Fighter/Thief";            
+                        break;
+                        case 7:
+                            return Character.Class.BaseClass = "Cleric/Thief";            
+                        break;
+                        default:
+                            return Character.Class.BaseClass = "OTHER";            
+                        break;
+                    }     
+                default:
+                    return Character.Class.BaseClass = "OTHER";
+    }
+}
+
+function kitclassroll() {
+    
+    switch (Character.Class.BaseClass){
+            case "Fighter":
+                if (Character.Race === 'Dwarf') {
+                    //var KitResult = dieroll(6); 
+                    switch (dieroll(6)) {
+                    case 1:
+                        return Character.Class.KitClass = "Fighter"; 
+                    break;
+                    case 2:
+                        return Character.Class.KitClass = "Bezerker"; 
+                    break;
+                    case 3:
+                        return Character.Class.KitClass = "Wizard Slayer"; 
+                    break;
+                    case 4:
+                        return Character.Class.KitClass = "Kensai"; 
+                    break;
+                    case 5:
+                        return Character.Class.KitClass = "Barbarian"; 
+                    break;
+                    case 6:
+                        return Character.Class.KitClass = "Dwarven Defender";
+                    break;
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                    }
+                }
+                else {
+                    //var KitResult = dieroll(5);
+                    switch (dieroll(5)) {
+                        case 1:
+                            return Character.Class.KitClass = "Fighter"; 
+                        break;
+                        case 2:
+                            return Character.Class.KitClass = "Bezerker"; 
+                        break;
+                        case 3:
+                            return Character.Class.KitClass = "Wizard Slayer"; 
+                        break;
+                        case 4:
+                            return Character.Class.KitClass = "Kensai"; 
+                        break;
+                        case 5:
+                            return Character.Class.KitClass = "Barbarian"; 
+                        break;
+                        default:
+                            return Character.Class.KitClass = "OTHER";            
+                        break;
+                    }
+                }
+            case "Ranger":
+                //var KitResult = dieroll(3);
+                switch (dieroll(3)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Archer"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Stalker"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Beast Master"; 
+                    break;
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }
+            case "Paladin":
+                //var KitResult = dieroll(4);
+                switch (dieroll(4)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Cavalier"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Inquisitor"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Undead Hunter"; 
+                    break;
+                    case 4:                      
+                        return Character.Class.KitClass = "Blackguard"; 
+                    break;
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }
+            case "Cleric":
+                //var KitResult = dieroll(4);
+                switch (dieroll(5)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Cleric"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Priest of Talos"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Priest of Helm"; 
+                    break;
+                    case 4:                      
+                        return Character.Class.KitClass = "Priest of Lanthander"; 
+                    break;
+                    case 5:                      
+                        return Character.Class.KitClass = "Priest of Tyr"; 
+                    break;
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }        
+            case "Mage":
+                //var KitResult = dieroll(10);
+                switch (dieroll(10)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Mage"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Abjurer"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Conjurer"; 
+                    break;
+                    case 4:                      
+                        return Character.Class.KitClass = "Diviner"; 
+                    break;                    
+                    case 5:
+                        return Character.Class.KitClass = "Enchanter";            
+                    break;
+                    case 6:
+                        return Character.Class.KitClass = "Illusionist";            
+                    break;
+                    case 7:
+                        return Character.Class.KitClass = "Invoker";            
+                    break;
+                    case 8:
+                        return Character.Class.KitClass = "Necromancer";            
+                    break;
+                    case 9:
+                        return Character.Class.KitClass = "Transmuter";            
+                    break;
+                    case 10:
+                        return Character.Class.KitClass = "Wild Mage";            
+                    break;
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }      
+            case "Thief":
+                //var KitResult = dieroll(5);
+                switch (dieroll(5)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Thief"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Assassin"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Bounty Hunter"; 
+                    break;
+                    case 4:                      
+                        return Character.Class.KitClass = "Swashbuckler"; 
+                    break;                    
+                    case 5:
+                        return Character.Class.KitClass = "Shadowdancer";            
+                    break;               
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }        
+            case "Druid":
+                //var KitResult = dieroll(4);
+                switch (dieroll(4)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Druid"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Totemic Druid"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Shapeshifter"; 
+                    break;
+                    case 4:                      
+                        return Character.Class.KitClass = "Avenger"; 
+                    break;                                   
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }      
+            case "Shaman":
+                //var KitResult = dieroll(1);
+                switch (dieroll(1)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Shaman"; 
+                    break;                                                      
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                }
+            case "Sorcerer":
+                //var KitResult = dieroll(2);
+                switch (dieroll(2)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Sorcerer"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Dragon Disciple"; 
+                    break;                                                   
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                } 
+            case "Bard":
+                //var KitResult = dieroll(4);
+                switch (dieroll(4)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Bard"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Blade"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Jester"; 
+                    break; 
+                    case 4:                      
+                        return Character.Class.KitClass = "Skald"; 
+                    break; 
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                } 
+            case "Monk":
+                //var KitResult = dieroll(3);
+                switch (dieroll(3)) {
+                    case 1:                      
+                        return Character.Class.KitClass = "Monk"; 
+                    break;
+                    case 2:                      
+                        return Character.Class.KitClass = "Dark Moon Monk"; 
+                    break;
+                    case 3:                      
+                        return Character.Class.KitClass = "Sun Soul Monk"; 
+                    break;                    
+                    default:
+                        return Character.Class.KitClass = "OTHER";            
+                    break;
+                } 
+            
+            case "Fighter/Mage":
+                    return Character.Class.KitClass = "Fighter/Mage";
+                    break;                        
+            case "Fighter/Cleric":
+                    return Character.Class.KitClass = "Fighter/Cleric";
+                    break;            
+            case "Fighter/Thief":
+                    return Character.Class.KitClass = "Fighter/Thief";
+                    break;
+            case "Fighter/Mage/Thief":
+                    return Character.Class.KitClass = "Fighter/Mage/Thief";
+                    break;
+            case "Mage/Thief":
+                    return Character.Class.KitClass = "Mage/Thief";
+                    break;
+            case "Cleric/Mage":
+                    return Character.Class.KitClass = "Cleric/Mage";
+                    break;
+            case "Fighter/Druid":
+                    return Character.Class.KitClass = "Fighter/Druid";
+                    break;
+            case "Fighter/Mage/Cleric":
+                    return Character.Class.KitClass = "Fighter/Mage/Cleric";
+                    break;
+            case "Cleric/Ranger":
+                    return Character.Class.KitClass = "Cleric/Ranger";
+                    break;
+            case "Fighter/Illusionist":
+                    return Character.Class.KitClass = "Fighter/Illusionist";
+                    break;
+            case "Illusionist/Thief":
+                    return Character.Class.KitClass = "Illusionist/Thief";
+                    break; 
+            case "Cleric/Illusionist":
+                    return Character.Class.KitClass = "Cleric/Illusionist";
+                    break;
+            case "Illusionist":
+                    return Character.Class.KitClass = "Illusionist";
+                    break;
+            case "Cleric/Thief":
+                    return Character.Class.KitClass = "Cleric/Thief";
+                    break;
+  
+            
+            
+            
+        default:
+        return Character.Class.KitClass = "OTHER";            
+        break;
+    }
+}
+
+function alignmentroll() {
+    
+    
+    
+    switch(Character.Class.BaseClass) {
+        
+            case "Fighter":
+                
+                if (Character.Class.KitClass === "Berzerker") {
+                switch(dieroll(6)) {
+                    case 1:
+                        return Character.Alignment = "Neutral Good";
+                        break;
+                    case 2:
+                        return Character.Alignment = "Chaotic Good";
+                        break;
+                    case 3:
+                        return Character.Alignment = "True Neutral";
+                        break;
+                    case 4:
+                        return Character.Alignment = "Chaotic Neutral";
+                        break;
+                    case 5:
+                        return Character.Alignment = "Neutral Evil";
+                        break;
+                    case 6:
+                        return Character.Alignment = "Chaotic Evil";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+                }
+                else if (Character.Class.KitClass === "Kensai") {
+                    switch(dieroll(6)) {
+                    case 1:
+                        return Character.Alignment = "Lawful Good";
+                        break;
+                    case 2:
+                        return Character.Alignment = "Neutral Good";
+                        break;
+                    case 3:
+                        return Character.Alignment = "Lawful Neutral";
+                        break;
+                    case 4:
+                        return Character.Alignment = "True Neutral";
+                        break;
+                    case 5:
+                        return Character.Alignment = "Lawful Evil";
+                        break;
+                    case 6:
+                        return Character.Alignment = "Neutral Evil";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+            }    
+                    
+                    
+                }
+                else {
+                    switch(dieroll(9)) {
+                    case 1:
+                        return Character.Alignment = "Lawful Good";
+                    break;
+                    case 2:
+                        return Character.Alignment = "Neutral Good";
+                    break;
+                    case 3:
+                        return Character.Alignment = "Chaotic Good";
+                    break;
+                    case 4:
+                        return Character.Alignment = "Lawful Neutral";
+                    break;
+                    case 5:
+                        return Character.Alignment = "True Neutral";
+                    break;
+                    case 6:
+                        return Character.Alignment = "Chaotic Neutral";
+                    break;
+                    case 7:
+                        return Character.Alignment = "Lawful Evil";
+                    break;
+                    case 8:
+                        return Character.Alignment = "Neutral Evil";
+                    break;
+                    case 9:
+                        return Character.Alignment = "Chaotic Evil";
+                    break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+                    
+                }
+  
+        
+        case "Paladin":
+            if (Character.Class.KitClass === "Blackguard") {
+                switch(dieroll(3)) {
+                    case 1:
+                        return Character.Alignment = "Lawful Evil";
+                        break;
+                    case 2:
+                        return Character.Alignment = "Neutral Evil";
+                        break;
+                    case 3:
+                        return Character.Alignment = "Chaotic Evil";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+            }
+            else {
+                
+                    return Character.Alignment = "Lawful Good";
+                    break;
+
+                }
+            
+        case "Ranger":
+            switch(dieroll(3)) {
+                    case 1:
+                        return Character.Alignment = "Lawful Good";
+                        break;
+                    case 2:
+                        return Character.Alignment = "Neutral Good";
+                        break;
+                    case 3:
+                        return Character.Alignment = "Chaotic Good";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+           
+        
+        case "Thief":
+            if (Character.Class.KitClass === 'Assassin') {
+                switch(dieroll(6)) {
+                    case 1:
+                        return Character.Alignment = "Lawful Neutral";
+                        break;
+                    case 2:
+                        return Character.Alignment = "True Neutral";
+                        break;
+                    case 3:
+                        return Character.Alignment = "Chaotic Neutral";
+                        break;
+                    case 4:
+                        return Character.Alignment = "Lawful Evil";
+                        break;
+                    case 5:
+                        return Character.Alignment = "Neutral Evil";
+                        break;
+                    case 6:
+                        return Character.Alignment = "Chaotic Evil";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+                
+            }
+            else if (Character.Class.KitClass === 'Shadowdancer') {
+                switch(dieroll(6)) {
+                    case 1:
+                        return Character.Alignment = "Neutral Good";
+                        break;
+                    case 2:
+                        return Character.Alignment = "Chaotic Good";
+                        break;
+                    case 3:
+                        return Character.Alignment = "True Neutral";
+                        break;
+                    case 4:
+                        return Character.Alignment = "Chaotic Neutral";
+                        break;
+                    case 5:
+                        return Character.Alignment = "Neutral Evil";
+                        break;
+                    case 6:
+                        return Character.Alignment = "Chaotic Evil";
+                        break;
+                    default:
+                    return Character.Alignment = "OTHER";
+                }
+                
+            }  
+                      
+            else { 
+                switch(dieroll(8)) {
+                    case 1:
+                        return Character.Alignment = "Neutral Good";
+                    break;
+                    case 2:
+                        return Character.Alignment = "Chaotic Good";
+                    break;
+                    case 3:
+                        return Character.Alignment = "Lawful Neutral";
+                    break;
+                    case 4:
+                        return Character.Alignment = "True Neutral";
+                    break;
+                    case 5:
+                        return Character.Alignment = "Chaotic Neutral";
+                    break;
+                    case 6:
+                        return Character.Alignment = "Lawful Evil";
+                    break;
+                    case 7:
+                        return Character.Alignment = "Neutral Evil";
+                    break;
+                    case 8:
+                        return Character.Alignment = "Chaotic Evil";
+                    break;
+                default:
+                    return Character.Alignment = "OTHER";
+        
+                }
+            }    
+        
+  
+        case "Cleric":
+            if (Character.Class.KitClass === "Priest of Talos"){
+                switch(dieroll(3))   {               
+                case 1:
+                    return Character.Alignment = "Lawful Evil";
+                    break;
+                case 2:
+                    return Character.Alignment = "Neutral Evil";
+                    break;
+                case 3:
+                    return Character.Alignment = "Chaotic Evil";
+                    break;
+                default:
+                    return Character.Alignment = "OTHER";    
+                
+            }
+            }
+            else if (Character.Class.KitClass === "Priest of Helm") {
+                switch(dieroll(4))   {               
+                case 1:
+                    return Character.Alignment = "Lawful Good";
+                    break;
+                case 2:
+                    return Character.Alignment = "Lawful Neutral";
+                    break;
+                case 3:
+                    return Character.Alignment = "Lawful Evil";
+                    break;
+                case 4:
+                    return Character.Alignment = "True Neutral";
+                    break;
+                default:
+                    return Character.Alignment = "OTHER";    
+                
+            }
+            }
+            else if (Character.Class.KitClass === "Priest of Lanthander") {
+                switch(dieroll(4))   {               
+                case 1:
+                    return Character.Alignment = "Lawful Good";
+                    break;
+                case 2:
+                    return Character.Alignment = "Neutral Good";
+                    break;
+                case 3:
+                    return Character.Alignment = "Chaotic Good";
+                    break;
+                case 4:
+                    return Character.Alignment = "True Neutral";
+                    break;
+                default:
+                    return Character.Alignment = "OTHER";
+            }
+            }
+            else if (Character.Class.KitClass === "Priest of Tyr") {
+                switch(dieroll(3))   {               
+                case 1:
+                    return Character.Alignment = "Lawful Good";
+                    break;
+                case 2:
+                    return Character.Alignment = "Neutral Good";
+                    break;
+                case 3:
+                    return Character.Alignment = "Lawful Neutral";
+                    break;                
+                default:
+                    return Character.Alignment = "OTHER";
+            }
+            }
+                
+                
+                
+            else { switch(dieroll(9))   {
+            case 1:
+                    return Character.Alignment = "Lawful Good";
+                    break;
+            case 2:
+                    return Character.Alignment = "Neutral Good";
+                    break;
+            case 3:
+                    return Character.Alignment = "Chaotic Good";
+                    break;
+            case 4:
+                    return Character.Alignment = "Lawful Neutral";
+                    break;
+            case 5:
+                    return Character.Alignment = "True Neutral";
+                    break;
+            case 6:
+                    return Character.Alignment = "Chaotic Neutral";
+                    break;
+            case 7:
+                    return Character.Alignment = "Lawful Evil";
+                    break;
+            case 8:
+                    return Character.Alignment = "Neutral Evil";
+                    break;
+            case 9:
+                    return Character.Alignment = "Chaotic Evil";
+                    break;
+            default:
+                    return Character.Alignment = "OTHER";    
+                
+            }
+        }
+  
+  
+  
+        default:
+            switch(dieroll(9)) {
+            case 1:
+                    return Character.Alignment = "Lawful Good";
+                    break;
+            case 2:
+                    return Character.Alignment = "Neutral Good";
+                    break;
+            case 3:
+                    return Character.Alignment = "Chaotic Good";
+                    break;
+            case 4:
+                    return Character.Alignment = "Lawful Neutral";
+                    break;
+            case 5:
+                    return Character.Alignment = "True Neutral";
+                    break;
+            case 6:
+                    return Character.Alignment = "Chaotic Neutral";
+                    break;
+            case 7:
+                    return Character.Alignment = "Lawful Evil";
+                    break;
+            case 8:
+                    return Character.Alignment = "Neutral Evil";
+                    break;
+            case 9:
+                    return Character.Alignment = "Chaotic Evil";
+                    break;
+            default:
+                    return Character.Alignment = "OTHER";
+        
+        
+            }
+    
+    
+    
+    
+        
+    }
+    
+    
+   
+    
+    
+}
+
+
+function CreateSectorWS() {      
+    
+    var subSectorAmount = dieroll(6)+dieroll(6)+dieroll(6);
+    var newsector = createsectorWS(subSectorAmount);
+    var ssc = newsector.SubSectorCount;
+    //var create = newsector.SubSectorGeneration();
+    //document.write('here');
+
+    var FirstInfo = 
+            'There are  ' 
+            + ssc
+            + ' subsectors ' 
+            + 'in your sector';
+    document.getElementById("firstoveralloutput").innerHTML = FirstInfo;
+
+    
+    var SubSectorArray = [ssc+1];
+    
+    for (i=0; i<ssc+1 ;i++)
+    {
+        SubSectorArray[i] = i;
+    };
+    
+    var SecondInfo = '';     
+    while (ssc > 0 ) {
+            
+            
+            SecondInfo += 
+            'Subsector '
+            +  SubSectorArray[ssc]
+            + '<br>';
+            //+ ' has ' 
+            //+ createdsscwc
+            //+ ' warp channels '
+            //+ '<br>';
+            //+ ' and is a '
+            //+ '[subsectorclass]'
+            //+ 'system';
+        //document.write(SecondInfo);
+        document.getElementById("secondoveralloutput").innerHTML = SecondInfo;
+        ssc--;
+        
+        }
+        
+  
+    //document.getElementById("firstoveralloutput").innerHTML = SecondInfo;
+           
+    
+    };
+
+
+
+//printNumber(result);
+
+// function myFunction() {
+//    var x, text;
+//    // Get the value of the input field with id="numb"
+//    x = document.getElementById("numb").value;
+//    // If x is Not a Number or less than one or greater than 10
+//    if (isNaN(x) || x < 1 || x > 2) {
+//       text = "Input not valid";
+//    } else {
+//        text = "Input OK";
+//    }
+//    document.getElementById("demo").innerHTML = text;}
+</script>
+
+
+        
+        
+
+        
+        
+        
+    </body>
+</html>
